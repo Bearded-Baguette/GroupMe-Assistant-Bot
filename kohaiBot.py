@@ -4,8 +4,6 @@ URL = "https://api.groupme.com/v3/bots/post"
 accessToken = "LWjIXZM4dl5CrDK8zzhZN4w7XUDTd2fcHhqfSLA8"
 bot_id = "0762588ce49d56ec028df8dafe"
 test_id = "0757dcd554eef85ed5096a34a5"
-text = "Hope you all have a great day today!"
-payload = {"bot_id" : test_id, "text" : text}
 received = {"bot_id" : test_id, "text" : "Message received!"}
 
 app = Flask(__name__)
@@ -19,9 +17,9 @@ def webhook():
 	return "ok", 200
 	
 def send_message(msg):
-	data = 	{
+	payload = 	{
 			 'bot_id' : test_id,
 			 'text'	: msg,
 			}
-	r = requests.post(url, urlencode(data).encode())
+	r = requests.post(URL, data=payload)
 	json = urlopen(request).read().decode()
