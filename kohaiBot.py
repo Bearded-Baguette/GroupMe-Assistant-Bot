@@ -8,8 +8,6 @@ text = "Hope you all have a great day today!"
 payload = {"bot_id" : test_id, "text" : text}
 received = {"bot_id" : test_id, "text" : "Message received!"}
 
-r = requests.post(URL, data=payload)
-
 app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def webhook():
@@ -25,5 +23,5 @@ def send_message(msg):
 			 'bot_id' : test_id,
 			 'text'	: msg,
 			}
-	request = Request(url, urlencode(data).encode())
+	r = requests.post(url, urlencode(data).encode())
 	json = urlopen(request).read().decode()
