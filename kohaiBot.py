@@ -10,8 +10,20 @@ received = {"bot_id" : test_id, "text" : "Message received!"}
 
 r = requests.post(URL, data=payload)
 
-app = Flask(_name_)
+app = Flask(__name__)
 @app.route('/', methods=['POST'])
-def result():
-	print(request.form['name'])
-	return requests.post(URL, data=received)
+def webhook():
+	data = request.get_json()
+	
+	if data['name'] != 'Test Bot':
+		msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+		send_message(msg)
+	return "ok", 200
+	
+def send_message(msg):
+	data = 	{
+			 'bot_id' : test_id,
+			 'text'	: msg,
+			}
+	request = Request(url, urlencode(data).encode())
+	json = urlopen(request).read().decode()
