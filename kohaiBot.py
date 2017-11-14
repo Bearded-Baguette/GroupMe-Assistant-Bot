@@ -6,6 +6,7 @@ bot_id = "0762588ce49d56ec028df8dafe"
 test_id = "0757dcd554eef85ed5096a34a5"
 text = "Hope you all have a great day today!"
 payload = {"bot_id" : test_id, "text" : text}
+received = {"bot_id" : test_id, "text" : "Message received!"}
 
 r = requests.post(URL, data=payload)
 
@@ -13,4 +14,4 @@ app = Flask(_name_)
 @app.route('/', methods='[POST'])
 def result():
 	print(request.form['name'])
-	return 'Received!'
+	return requests.post(URL, data=received)
