@@ -1,4 +1,6 @@
-from flask import requests, Flask, json
+from flask import Flask
+import json
+import requests
 
 URL = "https://api.groupme.com/v3/bots/post"
 accessToken = "LWjIXZM4dl5CrDK8zzhZN4w7XUDTd2fcHhqfSLA8"
