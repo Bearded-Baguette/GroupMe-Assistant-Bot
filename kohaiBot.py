@@ -11,7 +11,7 @@ received = {"bot_id" : test_id, "text" : "Message received!"}
 r = requests.post(URL, data=payload)
 
 app = Flask(_name_)
-@app.route('/', methods='[POST'])
+@app.route('/', methods=['POST'])
 def result():
 	print(request.form['name'])
 	return requests.post(URL, data=received)
