@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import json
 import requests
 from urllib.parse import urlencode, urlparse
@@ -15,7 +15,7 @@ r = requests.post(url, data = payload)
 app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def webhook():
-	data = requests.get_json()
+	data = request.get_json()
 	
 	if data['name'] != 'Test Bot':
 		msg = '{}, you sent "{}".'.format(data['name'], data['text'])
